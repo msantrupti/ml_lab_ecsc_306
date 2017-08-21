@@ -1,0 +1,25 @@
+import tensorflow as tf
+#(a+b)^3=a^3+b^3+3ab(a+b)
+a=8
+b=2
+
+with tf.name_scope("lab1_ASSIGNMENT1b"):
+    with tf.name_scope("Scope_1"):
+        x=tf.multiply(a, a)
+        x1=tf.multiply(x, a)
+        y=tf.multiply(b, b)
+        y1=tf.multiply(y, b)
+    with tf.name_scope("scope_2"):
+        z=tf.multiply(3, a)
+        z1=tf.multiply(z, b)
+        c=tf.add(a, b)
+        d=tf.multiply(z1, c)
+       
+with tf.name_scope("Scope_3"):
+    e=tf.add(x1, y1)
+    f=tf.add(e, d)
+   
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter("/tmp/tboard/shifa_assign2", sess.graph)
+    print(sess.run(f))
+    writer.close()
